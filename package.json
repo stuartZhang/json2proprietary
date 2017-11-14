@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stuartZhang/json2proprietary.git"
+    "url": "https://github.com/stuartZhang/json2proprietary.git"
   },
   "keywords": [
     "json",
@@ -16,6 +16,9 @@
   ],
   "author": "stuart_zhang",
   "license": "ISC",
+  "engines": {
+    "node": ">=8.9.1"
+  },
   "bugs": {
     "url": "https://github.com/stuartZhang/json2proprietary/issues"
   },

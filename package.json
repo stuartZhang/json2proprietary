@@ -1,0 +1,23 @@
+{
+  "name": "json2proprietary",
+  "version": "1.0.0",
+  "description": "Convert JSON to the proprietary compressing format used internally in the company bidirectionally.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stuartZhang/json2proprietary.git"
+  },
+  "keywords": [
+    "json",
+    "converter"
+  ],
+  "author": "stuart_zhang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stuartZhang/json2proprietary/issues"
+  },
+  "homepage": "https://github.com/stuartZhang/json2proprietary#readme"
+}

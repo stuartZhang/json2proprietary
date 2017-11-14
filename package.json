@@ -17,10 +17,13 @@
   "author": "stuart_zhang",
   "license": "ISC",
   "engines": {
-    "node": ">=8.9.1"
+    "node": ">=6.11.3"
   },
   "bugs": {
     "url": "https://github.com/stuartZhang/json2proprietary/issues"
   },
-  "homepage": "https://github.com/stuartZhang/json2proprietary#readme"
+  "homepage": "https://github.com/stuartZhang/json2proprietary#readme",
+  "dependencies": {
+    "java": "^0.9.0"
+  }
 }

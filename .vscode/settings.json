@@ -1,0 +1,21 @@
+{
+    "files.trimTrailingWhitespace": true,
+    "editor.tabSize": 2,
+    "editor.wordWrap": "on",
+    "editor.detectIndentation": false,
+    "extensions.autoUpdate": true,
+    "window.openFilesInNewWindow": "off",
+    "editor.snippetSuggestions": "top",
+    "editor.tabCompletion": true,
+    "vsicons.presets.angular": false,
+    "explorer.autoReveal": true,
+    "debug.inlineValues": true,
+    "debug.openExplorerOnEnd": true,
+    "debug.allowBreakpointsEverywhere": false,
+    "workbench.editor.revealIfOpen": true,
+    "workbench.editor.closeOnFileDelete": false,
+    "files.defaultLanguage": "javascript",
+    "projectManager.groupList": true,
+    "projectManager.sortList": "Recent",
+    "projectManager.openInNewWindowWhenClickingInStatusBar": true
+}

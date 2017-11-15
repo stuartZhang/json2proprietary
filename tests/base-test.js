@@ -13,7 +13,7 @@ java.options.push('-Dfile.encoding=UTF-8');
 const TpsConDriver = java.import('com.amo.driver.TpsConDriver');
 const startTime = _.now();
 async function handle(value) {
-  try {    
+  try {
     const res = await TpsConDriver.sendPromise(value);
     console.log('Elaps Time:', _.now() - startTime)
     return console.log('js output: ' + res);

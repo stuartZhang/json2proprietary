@@ -1,0 +1,24 @@
+{
+  "query": {
+    "geocode-query": {
+      "address": {
+        "airport": "",
+        "county": "",
+        "city": "",
+        "postal": "",
+        "state": "",
+        "freeform": "nankai district",
+        "country": "CHN",
+        "sa": "",
+        "type": "street",
+        "xstr": "",
+        "str": ""
+      },
+      "sliceres": {
+        "total": 10,
+        "start": 0,
+        "end": 10
+      }
+    }
+  }
+}

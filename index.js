@@ -39,15 +39,6 @@ const tpslong = java.import('com.nim.tps.attrio.tpslong');
 const fsStat = promisify(fs.stat);
 const fsReadFile = promisify(fs.readFile);
 //
-async function calcServletName({query}){
-  const keys = Object.keys(query);
-  console.assert(keys.length === 1, `Too many querys ${keys.join()} in the same request.`);
-  const [queryName] = keys;
-  const jsonStr = await fsReadFile(path.resolve('./conf/query2servletName.json'));
-  const mapping = JSON.parse(stripJsonComments(jsonStr.toString()));
-  console.assert(mapping[queryName], `miss the servlet name for query name ${queryName}`);
-  return mapping[queryName];
-}
 async function buildIdendTps({ip, lang, mdn, credential, 'client-guid': clientGuid, 'user-agent': userAgent}){
   const idenTps = new MutableTPSElement('iden');
   await Promise.all([
@@ -66,6 +57,19 @@ async function buildIdendTps({ip, lang, mdn, credential, 'client-guid': clientGu
   ]);
   return idenTps;
 }
+const calcServletName = (() => {
+  const mappingPromise = fsReadFile(path.resolve('./conf/query2servletName.json')).then(jsonStr => {
+    return JSON.parse(stripJsonComments(jsonStr.toString()));
+  });
+  return async function calcServletName({query}){
+    const keys = Object.keys(query);
+    console.assert(keys.length === 1, `Too many querys ${keys.join()} in the same request.`);
+    const [queryName] = keys;
+    const servletName = (await mappingPromise)[queryName];
+    console.assert(servletName, `miss the servlet name for query name ${queryName}`);
+    return servletName;
+  }
+})();
 const loadTpslib = (() => {
   const tpslibPromises = new Map();
   return function loadTpslib({tpslib}){

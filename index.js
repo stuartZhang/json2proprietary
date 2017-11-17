@@ -66,14 +66,21 @@ async function buildIdendTps({ip, lang, mdn, credential, 'client-guid': clientGu
   ]);
   return idenTps;
 }
-async function loadTpslib({tpslib}){
-  tpslib = path.resolve('./conf', tpslib);
-  const stats = await fsStat(tpslib);
-  if (!stats.isFile()) {
-    throw new Error(`tpslib ${tpslib} isn't a file.`);
-  }
-  return StaticTemplateLibrary.loadResourcePromise(tpslib);
-}
+const loadTpslib = (() => {
+  const tpslibPromises = new Map();
+  return function loadTpslib({tpslib}){
+    if (!tpslibPromises.has(tpslib)) {
+      const filePath = path.resolve('./conf', tpslib);
+      tpslibPromises.set(tpslib, fsStat(filePath).then(stats => {
+        if (!stats.isFile()) {
+          throw new Error(`tpslib ${filePath} isn't a file.`);
+        }
+        return StaticTemplateLibrary.loadResourcePromise(filePath);
+      }));
+    }
+    return tpslibPromises.get(tpslib);
+  };
+})();
 /**
  * Assume
  * 1. apikey: 24611

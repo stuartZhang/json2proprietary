@@ -3,6 +3,7 @@ const _ = require('underscore');
 const fs = require('fs');
 const java = require('java');
 const path = require('path');
+const traverse = require('traverse');
 const stripJsonComments = require('strip-json-comments');
 //
 const sampleReq = require('./tests/geocode-req-1.json');
@@ -85,6 +86,24 @@ const loadTpslib = (() => {
     return tpslibPromises.get(tpslib);
   };
 })();
+async function json2tps(body){
+  await traverse(body).reduce(function(promises, value){
+    if (this.key !== undefined) {
+      if (_.isObject(this.node) || _.isArray(this.node)) {
+        this.node.tps = new MutableTPSElement(this.key);
+        if (this.parent.node.tps == null) {
+          this.parent.node.tps = this.node.tps;
+        } else {
+          promises.push(this.parent.node.tps.attachPromise(this.node.tps));
+        }
+      } else { // 叶子
+        promises.push(tpsstr.setPromise(this.parent.node.tps , this.key, String(this.node)));
+      }
+    }
+    return promises;
+  }, []);
+  return body.tps;
+}
 /**
  * Assume
  * 1. apikey: 24611
@@ -116,13 +135,19 @@ const loadTpslib = (() => {
     },
     body: sampleReq
   }; //TODO: from http request
-  const [servletName, idenTps, tpslib] = await Promise.all([
+  const [servletName, tpslib, idenTps, bodyTps] = await Promise.all([
     calcServletName(request.body),
+    loadTpslib(request.servlet),
     buildIdendTps(request.iden),
-    loadTpslib(request.servlet)
+    json2tps(request.body)
   ]);
   request.servlet.name = servletName;
-  idenTps.toStringPromise().then(console.log);
   console.dir(tpslib);
   console.log('Servlet Name:', request.servlet.name);
+  const [idenStr, bodyStr] = await Promise.all([
+    idenTps.toStringPromise(),
+    bodyTps.toStringPromise()
+  ]);
+  console.log('tps req iden', idenStr);
+  console.log('tps req body', bodyStr);
 })();

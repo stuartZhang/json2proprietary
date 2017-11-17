@@ -1,3 +1,8 @@
+/*
+  Mapping relationship From root element name to tps servlet name.
+    E.g. geocode-query=geocode,usa
+         nav-query=nav,usa
+*/
 {
   "geocode-query": "geocode,usa",
   "reverse-geocode-query": "reverse-geocode,usa",

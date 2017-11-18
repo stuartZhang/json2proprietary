@@ -10,6 +10,7 @@
   "[\"query\",\"geocode-query\",\"address\",\"sa\"]": "string",
   "[\"query\",\"geocode-query\",\"address\",\"type\"]": "string",
   "[\"query\",\"geocode-query\",\"address\",\"xstr\"]": "string",
+  "[\"query\",\"geocode-query\",\"address\",\"str\"]": "binary-base64",
   "[\"query\",\"geocode-query\",\"sliceres\",\"total\"]": "long",
   "[\"query\",\"geocode-query\",\"sliceres\",\"start\"]": "long",
   "[\"query\",\"geocode-query\",\"sliceres\",\"end\"]": "long"

@@ -1,21 +1,3 @@
-const {promisify} = require('util');
-const _ = require('underscore');
-const fs = require('fs');
-const java = require('java');
-const path = require('path');
-const traverse = require('traverse');
-const stripJsonComments = require('strip-json-comments');
-//
-const sampleReq = require('./tests/geocode-req-1.json');
-//
-java.asyncOptions = {
-  'asyncSuffix': 'Async',     // Don't generate node-style methods taking callbacks
-  'syncSuffix': 'Sync',              // Sync methods use the base name(!!)
-  'promiseSuffix': 'Promise',   // Generate methods returning promises, using the suffix Promise.
-  'promisify': require('when/node').lift
-};
-java.classpath.push('./jars/nimtps-all.jar');
-java.options.push('-Dfile.encoding=UTF-8');
 /**
  * TPS Element Class set
  * <ul>
@@ -31,92 +13,12 @@ java.options.push('-Dfile.encoding=UTF-8');
  *   <li>com.nim.tps.attrio.tpsuint
  * </ul>
  */
-const Long = java.import('java.lang.Long');
-const StaticTemplateLibrary = java.import('com.nim.tps.StaticTemplateLibrary');
-const MutableTPSElement = java.import('com.nim.tps.MutableTPSElement');
-const tpsstr = java.import('com.nim.tps.attrio.tpsstr');
-const tpslong = java.import('com.nim.tps.attrio.tpslong');
-//
-const fsStat = promisify(fs.stat);
-const fsReadFile = promisify(fs.readFile);
-//
-async function buildIdendTps({ip, lang, mdn, credential, 'client-guid': clientGuid, 'user-agent': userAgent}){
-  const idenTps = new MutableTPSElement('iden');
-  await Promise.all([
-    tpsstr.setPromise(idenTps , 'ip-address', ip),
-    tpsstr.setPromise(idenTps , 'language', lang),
-    tpsstr.setPromise(idenTps , 'credential', credential),
-    tpsstr.setPromise(idenTps , 'client-guid', clientGuid),
-    tpsstr.setPromise(idenTps , 'user-agent', userAgent),
-    new Promise((resolve, reject) => {
-      if (_.isString(mdn) && !_.isEmpty(mdn)) {
-        tpslong.setPromise(idenTps , 'mdn', new Long(mdn)).then(resolve, reject);
-      } else {
-        resolve();
-      }
-    })
-  ]);
-  return idenTps;
-}
-const calcServletName = (() => {
-  const mappingPromise = fsReadFile(path.resolve('./conf/query2servletName.json')).then(jsonStr => {
-    return JSON.parse(stripJsonComments(jsonStr.toString()));
-  });
-  return async function calcServletName({query}){
-    const keys = Object.keys(query);
-    console.assert(keys.length === 1, `Too many querys ${keys.join()} in the same request.`);
-    const [queryName] = keys;
-    const servletName = (await mappingPromise)[queryName];
-    console.assert(servletName, `miss the servlet name for query name ${queryName}`);
-    return servletName;
-  };
-})();
-const loadTpslib = (() => {
-  const tpslibPromises = new Map();
-  return function loadTpslib({tpslib}){
-    if (!tpslibPromises.has(tpslib)) {
-      const filePath = path.resolve('./conf', tpslib);
-      tpslibPromises.set(tpslib, fsStat(filePath).then(stats => {
-        if (!stats.isFile()) {
-          throw new Error(`tpslib ${filePath} isn't a file.`);
-        }
-        return StaticTemplateLibrary.loadResourcePromise(filePath);
-      }));
-    }
-    return tpslibPromises.get(tpslib);
-  };
-})();
-const json2tps = (() => {
-  const tpsAttrTypes = fsReadFile(path.resolve('./conf/tpsAttr2type.json')).then(jsonStr => {
-    return JSON.parse(stripJsonComments(jsonStr.toString()));
-  });
-  return function json2tps(body){
-    return Promise.all(traverse(body).reduce(function(promises, value){
-      // console.log('json2tps', JSON.stringify(this.path).replace(/"/g, "\\\""));
-      if (this.key !== undefined) {
-        if (_.isObject(this.node) || _.isArray(this.node)) {
-          this.node.tps = new MutableTPSElement(this.key);
-          if (this.parent.node.tps == null) {
-            this.parent.node.tps = this.node.tps;
-          } else {
-            promises.push(this.parent.node.tps.attachPromise(this.node.tps));
-          }
-        } else { // 叶子
-          promises.push(tpsAttrTypes.then(dataTypes => {
-            switch (dataTypes[JSON.stringify(this.path)]) {
-            case 'long':
-              return tpslong.setPromise(this.parent.node.tps , this.key, new Long(String(this.node)));
-            case 'string':
-            default:
-              return tpsstr.setPromise(this.parent.node.tps , this.key, String(this.node));
-            }
-          }));
-        }
-      }
-      return promises;
-    }, [])).then(() => body.tps);
-  };
-})();
+const java = require('./lib/java');
+const json2tps = require('./lib/json2tps');
+const calcServletName = require('./lib/calcServletName');
+const loadTpslib = require('./lib/loadTpslib');
+const buildIdendTps = require('./lib/buildIdendTps');
+const sampleReq = require('./tests/geocode-req-1.json');
 /**
  * Assume
  * 1. apikey: 24611

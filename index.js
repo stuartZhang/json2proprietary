@@ -15,6 +15,7 @@
  */
 const java = require('./lib/java');
 const json2tps = require('./lib/json2tps');
+const tps2json = require('./lib/tps2json');
 const calcServletName = require('./lib/calcServletName');
 const loadTpslib = require('./lib/loadTpslib');
 const buildIdendTps = require('./lib/buildIdendTps');
@@ -58,11 +59,10 @@ const sampleReq = require('./tests/geocode-req-1.json');
   ]);
   request.servlet.name = servletName;
   console.dir(tpslib);
+  const [idenStr, bodyStr] = await Promise.all([idenTps.toStringPromise(), bodyTps.toStringPromise()]);
   console.log('Servlet Name:', request.servlet.name);
-  const [idenStr, bodyStr] = await Promise.all([
-    idenTps.toStringPromise(),
-    bodyTps.toStringPromise()
-  ]);
   console.log('tps req iden', idenStr);
   console.log('tps req body', bodyStr);
+  //
+  await tps2json(bodyTps);
 })();

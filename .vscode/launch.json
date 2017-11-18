@@ -8,6 +8,9 @@
     "request": "launch",
     "name": "Test",
     "program": "${workspaceRoot}\\index.js",
-    "cwd": "${workspaceRoot}"
+    "cwd": "${workspaceRoot}",
+    "env": {
+      "DEBUG": ""
+    }
   }]
 }

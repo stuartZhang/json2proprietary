@@ -12,7 +12,22 @@
         "sa": "",
         "type": "street",
         "xstr": "",
-        "str": "aGVsbG8gd29ybGQ="
+        "str": ""
+      },
+      "search-filter": {
+        "pair": [{
+          "key": "sort-by",
+          "value": "d"
+        }, {
+          "key": "source",
+          "value": "test"
+        }, {
+          "key": "name",
+          "value": 1520
+        }],
+        "result-style": {
+          "key": "aGVsbG8gd29ybGQ="
+        }
       },
       "sliceres": {
         "total": 10,

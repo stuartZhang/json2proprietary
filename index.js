@@ -69,7 +69,7 @@ const calcServletName = (() => {
     const servletName = (await mappingPromise)[queryName];
     console.assert(servletName, `miss the servlet name for query name ${queryName}`);
     return servletName;
-  }
+  };
 })();
 const loadTpslib = (() => {
   const tpslibPromises = new Map();
@@ -86,24 +86,37 @@ const loadTpslib = (() => {
     return tpslibPromises.get(tpslib);
   };
 })();
-async function json2tps(body){
-  await traverse(body).reduce(function(promises, value){
-    if (this.key !== undefined) {
-      if (_.isObject(this.node) || _.isArray(this.node)) {
-        this.node.tps = new MutableTPSElement(this.key);
-        if (this.parent.node.tps == null) {
-          this.parent.node.tps = this.node.tps;
-        } else {
-          promises.push(this.parent.node.tps.attachPromise(this.node.tps));
+const json2tps = (() => {
+  const tpsAttrTypes = fsReadFile(path.resolve('./conf/tpsAttr2type.json')).then(jsonStr => {
+    return JSON.parse(stripJsonComments(jsonStr.toString()));
+  });
+  return function json2tps(body){
+    return Promise.all(traverse(body).reduce(function(promises, value){
+      // console.log('json2tps', JSON.stringify(this.path).replace(/"/g, "\\\""));
+      if (this.key !== undefined) {
+        if (_.isObject(this.node) || _.isArray(this.node)) {
+          this.node.tps = new MutableTPSElement(this.key);
+          if (this.parent.node.tps == null) {
+            this.parent.node.tps = this.node.tps;
+          } else {
+            promises.push(this.parent.node.tps.attachPromise(this.node.tps));
+          }
+        } else { // 叶子
+          promises.push(tpsAttrTypes.then(dataTypes => {
+            switch (dataTypes[JSON.stringify(this.path)]) {
+            case 'long':
+              return tpslong.setPromise(this.parent.node.tps , this.key, new Long(String(this.node)));
+            case 'string':
+            default:
+              return tpsstr.setPromise(this.parent.node.tps , this.key, String(this.node));
+            }
+          }));
         }
-      } else { // 叶子
-        promises.push(tpsstr.setPromise(this.parent.node.tps , this.key, String(this.node)));
       }
-    }
-    return promises;
-  }, []);
-  return body.tps;
-}
+      return promises;
+    }, [])).then(() => body.tps);
+  };
+})();
 /**
  * Assume
  * 1. apikey: 24611

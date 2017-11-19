@@ -13,6 +13,7 @@
  *   <li>com.nim.tps.attrio.tpsuint
  * </ul>
  */
+RegExp.quote = require("regexp-quote")
 const java = require('./lib/java');
 const json2tps = require('./lib/json2tps');
 const tps2json = require('./lib/tps2json');

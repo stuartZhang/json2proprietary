@@ -65,5 +65,6 @@ const sampleReq = require('./tests/geocode-req-1.json');
   console.log('tps req iden', idenStr);
   console.log('tps req body', bodyStr);
   //
-  await tps2json(bodyTps);
+  const json = await tps2json(bodyTps);
+  console.log('json res body', JSON.stringify(json, null, 2));
 })();

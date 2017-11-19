@@ -1,20 +1,31 @@
 {
-  // geocode-query
-  "[\"query\",\"geocode-query\",\"address\",\"airport\"]": "string",
-  "[\"query\",\"geocode-query\",\"address\",\"county\"]": "string",
-  "[\"query\",\"geocode-query\",\"address\",\"city\"]": "string",
-  "[\"query\",\"geocode-query\",\"address\",\"postal\"]": "string",
-  "[\"query\",\"geocode-query\",\"address\",\"state\"]": "string",
-  "[\"query\",\"geocode-query\",\"address\",\"freeform\"]": "string",
-  "[\"query\",\"geocode-query\",\"address\",\"country\"]": "string",
-  "[\"query\",\"geocode-query\",\"address\",\"sa\"]": "string",
-  "[\"query\",\"geocode-query\",\"address\",\"type\"]": "string",
-  "[\"query\",\"geocode-query\",\"address\",\"xstr\"]": "string",
-  "[\"query\",\"geocode-query\",\"address\",\"str\"]": "string",
-  "[\"query\",\"geocode-query\",\"sliceres\",\"total\"]": "long",
-  "[\"query\",\"geocode-query\",\"sliceres\",\"start\"]": "long",
-  "[\"query\",\"geocode-query\",\"sliceres\",\"end\"]": "long",
-  "[\"query\",\"geocode-query\",\"search-filter\",\"pair\",\"2\",\"value\"]": "long",
-  "[\"query\",\"geocode-query\",\"search-filter\",\"result-style\",\"key\"]": "binary-base64"
-  // geocode-reply
+  "query": {
+    "geocode-query": {
+      "sliceres": {
+        "total": "long",
+        "start": "long",
+        "end": "long"
+      },
+      "search-filter": {
+        "pair[?(@.key=\"test-long\")]": {
+          "value": "long"
+        },
+        "pair[?(@.key=\"test-int\")]": {
+          "value": "int"
+        },
+        "pair[?(@.key=\"test-double\")]": {
+          "value": "double"
+        },
+        "pair[?(@.key=\"test-float\")]": {
+          "value": "float"
+        },
+        "pair[?(@.key=\"test-uint\")]": {
+          "value": "uint"
+        },
+        "result-style": {
+          "key": "binary-base64"
+        }
+      }
+    }
+  }
 }

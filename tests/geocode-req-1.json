@@ -19,14 +19,23 @@
           "key": "sort-by",
           "value": "d"
         }, {
-          "key": "source",
-          "value": "test"
+          "key": "test-long",
+          "value": 12
         }, {
-          "key": "name",
+          "key": "test-int",
           "value": 1520
+        }, {
+          "key": "test-double",
+          "value": 1521
+        }, {
+          "key": "test-float",
+          "value": 1522
+        }, {
+          "key": "test-uint",
+          "value": 1
         }],
         "result-style": {
-          "key": "aGVsbG8gd29ybGQ="
+          "key": "YmFzZTY0IGJpbmFyeQ=="
         }
       },
       "sliceres": {

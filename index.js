@@ -20,6 +20,7 @@ const tps2json = require('./lib/tps2json');
 const calcServletName = require('./lib/calcServletName');
 const loadTpslib = require('./lib/loadTpslib');
 const buildIdendTps = require('./lib/buildIdendTps');
+const send = require('./lib/sender');
 const sampleReq = require('./tests/geocode-req-1.json');
 /**
  * Assume
@@ -67,4 +68,6 @@ const sampleReq = require('./tests/geocode-req-1.json');
   //
   const json = await tps2json(bodyTps);
   console.log('json res body', JSON.stringify(json, null, 2));
+  //
+  await send(servletName, tpslib, idenTps, bodyTps);
 })();

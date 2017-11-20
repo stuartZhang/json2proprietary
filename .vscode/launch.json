@@ -10,7 +10,7 @@
     "program": "${workspaceRoot}\\index.js",
     "cwd": "${workspaceRoot}",
     "env": {
-      "DEBUG": ""
+      "DEBUG": "tpslib-loader"
     }
   }]
 }

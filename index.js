@@ -48,7 +48,7 @@ const sampleReq = require('./tests/geocode-req-1.json');
           servlet.command.search-query=search
       */
       name: undefined,
-      tpslib: '5a5139403cce4a4719428b304739567dab9e11de',
+      tpslib: 'tpslib.txt',
       host: '192.168.84.234'
     },
     body: sampleReq

@@ -21,7 +21,7 @@ const calcServletName = require('./lib/calcServletName');
 const loadTpslib = require('./lib/loadTpslib');
 const buildIdendTps = require('./lib/buildIdendTps');
 const send = require('./lib/sender');
-const sampleReq = require('./tests/geocode-req-1.json');
+const sampleReq = require('./tests/geocode-req-2.json');
 /**
  * Assume
  * 1. apikey: 24611

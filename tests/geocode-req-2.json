@@ -1,0 +1,31 @@
+{
+  "query": {
+    "geocode-query": {
+      "search-filter": {
+        "pair": [{
+          "key": "language",
+          "value": "zh-CN"
+        }]
+      },
+      "address": {
+        "city": "",
+        "freeform": "NanKai district",
+        "country": "CHN",
+        "state": "",
+        "county": "",
+        "airport": "",
+        "str": "",
+        "xstr": "",
+        "sa": "",
+        "postal": "",
+        "type": "freeform"
+      },
+      "sliceres": {
+        "total": 10,
+        "start": 0,
+        "end": 10
+      },
+      "routeable": {}
+    }
+  }
+}

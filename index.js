@@ -70,4 +70,5 @@ const sampleReq = require('./tests/geocode-req-1.json');
   console.log('json res body', JSON.stringify(json, null, 2));
   //
   await send(servletName, tpslib, idenTps, bodyTps);
+  console.log('End');
 })();

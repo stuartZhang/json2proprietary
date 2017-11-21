@@ -27,9 +27,9 @@ const sampleReq = require('./tests/geocode-req-2.json');
  * 1. apikey: 24611
  */
 (async () => {
-  console.time('Launch JVM');
-  await java.ensureJvm();
-  console.timeEnd('Launch JVM');
+  console.time('Wait Util Jvm JVM');
+  await java.waitUtilJvm;
+  console.timeEnd('Wait Util Jvm JVM');
   const request = {
     servlet: {
       /*

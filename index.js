@@ -19,8 +19,8 @@ const json2tps = require('./lib/json2tps');
 const tps2json = require('./lib/tps2json');
 const calcServletName = require('./lib/calcServletName');
 const loadTpslib = require('./lib/loadTpslib');
-const buildIdendTps = require('./lib/buildIdendTps');
 const send = require('./lib/sender');
+const sameleIden = require('./tests/iden-1.json')
 const sampleReq = require('./tests/geocode-req-2.json');
 /**
  * Assume
@@ -28,14 +28,7 @@ const sampleReq = require('./tests/geocode-req-2.json');
  */
 (async () => {
   const request = {
-    iden: {
-      mdn: '9999990012', // As for apikey=24611, the field should be null.
-      credential: 'PrMkzpTrr4urjZpmG0S36Ghmu/dcLUucuXjR8ZAO', // token
-      ip: '192.168.84.233', // Client IP
-      lang: 'zh-cn', // Client Language
-      'client-guid': 'dc5b30a4ff374279802a06b26cef9b7',
-      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.89 Safari/537.36'
-    },
+    iden: sameleIden,
     servlet: {
       /*
         servlet name:
@@ -56,7 +49,7 @@ const sampleReq = require('./tests/geocode-req-2.json');
   const [servletName, tpslib, idenTps, bodyTps] = await Promise.all([
     calcServletName(request.body),
     loadTpslib(request.servlet),
-    buildIdendTps(request.iden),
+    json2tps(request.iden),
     json2tps(request.body)
   ]);
   request.servlet.name = servletName;

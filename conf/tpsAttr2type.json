@@ -1,4 +1,12 @@
 {
+  "iden": {
+    "ip-address": "string",
+    "client-guid": "string",
+    "user-agent": "string",
+    "language": "string",
+    "credential": "string",
+    "mdn": "long"
+  },
   "query": {
     "geocode-query": {
       "sliceres": {

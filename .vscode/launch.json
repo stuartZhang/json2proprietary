@@ -7,7 +7,7 @@
     "type": "node",
     "request": "launch",
     "name": "Test1",
-    "program": "${workspaceRoot}\\index.js",
+    "program": "${workspaceRoot}\\tests\\test-1.js",
     "cwd": "${workspaceRoot}",
     "env": {
       "DEBUG": "config-load,tpslib-compile,jvm"

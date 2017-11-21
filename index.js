@@ -13,13 +13,14 @@
  *   <li>com.nim.tps.attrio.tpsuint
  * </ul>
  */
-RegExp.quote = require("regexp-quote")
+RegExp.quote = require("regexp-quote");
+const _ = require('underscore');
 const java = require('./lib/java');
 const J2Ttransformer = require('./lib/json2tps');
 const tps2json = require('./lib/tps2json');
 const {compile} = require('./lib/confLoad');
 const send = require('./lib/sender');
-const sameleIden = require('./tests/iden-1.json')
+const sameleIden = require('./tests/iden-1.json');
 const sampleReq = require('./tests/geocode-req-2.json');
 /**
  * Assume
@@ -27,40 +28,42 @@ const sampleReq = require('./tests/geocode-req-2.json');
  */
 (async () => {
   await java.waitUtilJvm;
-  const request = {
-    servlet: {
-      /*
-        servlet name:
-          servlet.command.geocode-query=geocode,usa
-          servlet.command.reverse-geocode-query=reverse-geocode,usa
-          servlet.command.nav-query=nav,usa
-          servlet.command.proxpoi-query=proxpoi,usa
-          servlet.command.send-place-message-query=send-place-message
-          servlet.command.send-message-query=send-message
-          servlet.command.search-query=search
-      */
-      name: undefined,
-      tpslib: 'tpslib.txt',
-      host: '192.168.84.234'
-    }
-  }; //TODO: from http request
-  const j2tIden = new J2Ttransformer(sameleIden);
-  const j2tReq = new J2Ttransformer(sampleReq);
+  /*
+    servlet name:
+      servlet.command.geocode-query=geocode,usa
+      servlet.command.reverse-geocode-query=reverse-geocode,usa
+      servlet.command.nav-query=nav,usa
+      servlet.command.proxpoi-query=proxpoi,usa
+      servlet.command.send-place-message-query=send-place-message
+      servlet.command.send-message-query=send-message
+      servlet.command.search-query=search
+  */
+  const mux = {
+    host: 'aabdea8e46a51e37190abaacd351acdf062ffffc.amadorsoft.com',
+    // host: '192.168.85.10',
+    port: 8129,
+    timeout: 30 * 1000,
+    tpslib: 'tpslib.txt',
+    servletName: undefined
+  };
+  // Build a TPS request
+  const j2tIden = new J2Ttransformer(sameleIden); //TODO: from http request
+  const j2tReq = new J2Ttransformer(sampleReq); //TODO: from http request
   const [tpslib, servletName, bodyTps, idenTps] = await Promise.all([
-    compile(request.servlet.tpslib),
+    compile(mux.tpslib),
     j2tReq.servletName,
     j2tReq.tps,
     j2tIden.tps
   ]);
-  request.servlet.name = servletName;
+  _.extendOwn(mux, {servletName, tpslib});
   const [idenStr, bodyStr] = await Promise.all([idenTps.toStringPromise(), bodyTps.toStringPromise()]);
-  console.log('Servlet Name:', request.servlet.name);
+  console.log('Servlet Name:', servletName);
   console.log('tps req iden', idenStr);
   console.log('tps req body', bodyStr);
-  //
+  // Build a JSON respose
   const json = await tps2json(bodyTps);
   console.log('json res body', JSON.stringify(json, null, 2));
-  //
-  await send(servletName, tpslib, idenTps, bodyTps);
+  // Send a TPS request
+  await send(mux, idenTps, bodyTps);
   console.log('End');
 })();

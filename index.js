@@ -33,7 +33,7 @@ const sampleReq = require('./tests/geocode-req-2.json');
       credential: 'PrMkzpTrr4urjZpmG0S36Ghmu/dcLUucuXjR8ZAO', // token
       ip: '192.168.84.233', // Client IP
       lang: 'zh-cn', // Client Language
-      'client-guid': 'dc5b30a4ff374279802a06b26cef9b77',
+      'client-guid': 'dc5b30a4ff374279802a06b26cef9b7',
       'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.89 Safari/537.36'
     },
     servlet: {

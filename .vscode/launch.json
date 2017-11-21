@@ -19,7 +19,7 @@
     "program": "${workspaceRoot}\\tests\\test-2.js",
     "cwd": "${workspaceRoot}",
     "env": {
-      "DEBUG": "config-load,tpslib-compile,jvm"
+      "DEBUG": "tps-details,config-load,tpslib-compile,jvm"
     }
   }]
 }

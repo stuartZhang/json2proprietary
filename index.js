@@ -15,9 +15,8 @@
  */
 RegExp.quote = require("regexp-quote")
 const java = require('./lib/java');
-const json2tps = require('./lib/json2tps');
+const J2Ttransformer = require('./lib/json2tps');
 const tps2json = require('./lib/tps2json');
-const calcServletName = require('./lib/calcServletName');
 const loadTpslib = require('./lib/loadTpslib');
 const send = require('./lib/sender');
 const sameleIden = require('./tests/iden-1.json')
@@ -45,11 +44,13 @@ const sampleReq = require('./tests/geocode-req-2.json');
       host: '192.168.84.234'
     }
   }; //TODO: from http request
-  const [servletName, tpslib, idenTps, bodyTps] = await Promise.all([
-    calcServletName(sampleReq),
+  const j2tIden = new J2Ttransformer(sameleIden);
+  const j2tReq = new J2Ttransformer(sampleReq);
+  const [tpslib, servletName, bodyTps, idenTps] = await Promise.all([
     loadTpslib(request.servlet),
-    json2tps(sameleIden),
-    json2tps(sampleReq)
+    j2tReq.servletName,
+    j2tReq.tps,
+    j2tIden.tps
   ]);
   request.servlet.name = servletName;
   const [idenStr, bodyStr] = await Promise.all([idenTps.toStringPromise(), bodyTps.toStringPromise()]);

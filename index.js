@@ -28,7 +28,6 @@ const sampleReq = require('./tests/geocode-req-2.json');
  */
 (async () => {
   const request = {
-    iden: sameleIden,
     servlet: {
       /*
         servlet name:
@@ -43,17 +42,15 @@ const sampleReq = require('./tests/geocode-req-2.json');
       name: undefined,
       tpslib: 'tpslib.txt',
       host: '192.168.84.234'
-    },
-    body: sampleReq
+    }
   }; //TODO: from http request
   const [servletName, tpslib, idenTps, bodyTps] = await Promise.all([
-    calcServletName(request.body),
+    calcServletName(sampleReq),
     loadTpslib(request.servlet),
-    json2tps(request.iden),
-    json2tps(request.body)
+    json2tps(sameleIden),
+    json2tps(sampleReq)
   ]);
   request.servlet.name = servletName;
-  console.dir(tpslib);
   const [idenStr, bodyStr] = await Promise.all([idenTps.toStringPromise(), bodyTps.toStringPromise()]);
   console.log('Servlet Name:', request.servlet.name);
   console.log('tps req iden', idenStr);

@@ -17,7 +17,7 @@ RegExp.quote = require("regexp-quote")
 const java = require('./lib/java');
 const J2Ttransformer = require('./lib/json2tps');
 const tps2json = require('./lib/tps2json');
-const loadTpslib = require('./lib/loadTpslib');
+const {compile} = require('./lib/confLoad');
 const send = require('./lib/sender');
 const sameleIden = require('./tests/iden-1.json')
 const sampleReq = require('./tests/geocode-req-2.json');
@@ -47,7 +47,7 @@ const sampleReq = require('./tests/geocode-req-2.json');
   const j2tIden = new J2Ttransformer(sameleIden);
   const j2tReq = new J2Ttransformer(sampleReq);
   const [tpslib, servletName, bodyTps, idenTps] = await Promise.all([
-    loadTpslib(request.servlet),
+    compile(request.servlet.tpslib),
     j2tReq.servletName,
     j2tReq.tps,
     j2tIden.tps

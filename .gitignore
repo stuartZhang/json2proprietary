@@ -1,4 +1,4 @@
 # Node.js
 node_modules/
 conf/tpslib
-tpslib-compiler/yaml/*.pyc
+compiler/yaml/*.pyc

@@ -1,13 +1,13 @@
 /*
   Mapping relationship From root element name to tps servlet name.
-    E.g. geocode-query=geocode,usa
-         nav-query=nav,usa
+    E.g. geocode-query=geocode,global
+         nav-query=nav,global
 */
 {
-  "geocode-query": "geocode,usa",
-  "reverse-geocode-query": "reverse-geocode,usa",
-  "nav-query": "nav,usa",
-  "proxpoi-query": "proxpoi,usa",
+  "geocode-query": "geocode,global",
+  "reverse-geocode-query": "reverse-geocode,global",
+  "nav-query": "nav,global",
+  "proxpoi-query": "proxpoi,global",
   "send-place-message-query": "send-place-message",
   "send-message-query": "send-message",
   "search-query": "search"

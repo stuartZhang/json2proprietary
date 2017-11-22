@@ -1,5 +1,5 @@
 {
-  "name": "json2proprietary",
+  "name": "lbs-connect-driver",
   "version": "1.0.0",
   "description": "Convert JSON to the proprietary compressing format used internally in the company bidirectionally.",
   "main": "index.js",

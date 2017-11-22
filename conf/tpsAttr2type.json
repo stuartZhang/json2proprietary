@@ -35,5 +35,27 @@
         }
       }
     }
+  },
+  "geocode-reply": {
+    "sliceres": {
+      "end": "uint",
+      "start": "uint",
+      "total": "uint"
+    },
+    "locmatch": {
+      "accuracy": "uint",
+      "location": {
+        "point": {
+          "lat": "double",
+          "lon": "double"
+        },
+        "box": {
+          "point": {
+            "lat": "double",
+            "lon": "double"
+          }
+        }
+      }
+    }
   }
 }

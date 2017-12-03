@@ -6,20 +6,29 @@
   "configurations": [{
     "type": "node",
     "request": "launch",
-    "name": "Test1",
-    "program": "${workspaceRoot}\\tests\\test-1.js",
-    "cwd": "${workspaceRoot}",
-    "env": {
-      "DEBUG": "lbs-connect-driver:config-load,lbs-connect-driver:tpslib-compile,lbs-connect-driver:jvm"
-    }
-  }, {
-    "type": "node",
-    "request": "launch",
-    "name": "Test2",
+    "name": "geocode",
     "program": "${workspaceRoot}\\tests\\test-2.js",
     "cwd": "${workspaceRoot}",
     "env": {
       "DEBUG": "lbs-connect-driver:tps-sender,lbs-connect-driver:tps-details,lbs-connect-driver:config-load,lbs-connect-driver:tpslib-compile,lbs-connect-driver:jvm"
+    }
+  }, {
+    "type": "node",
+    "request": "launch",
+    "name": "ssb",
+    "program": "${workspaceRoot}\\tests\\test-3.js",
+    "cwd": "${workspaceRoot}",
+    "env": {
+      "DEBUG": "lbs-connect-driver:tps-sender,lbs-connect-driver:tps-details,lbs-connect-driver:config-load,lbs-connect-driver:tpslib-compile,lbs-connect-driver:jvm"
+    }
+  }, {
+    "type": "node",
+    "request": "launch",
+    "name": "test1",
+    "program": "${workspaceRoot}\\tests\\test-1.js",
+    "cwd": "${workspaceRoot}",
+    "env": {
+      "DEBUG": "lbs-connect-driver:config-load,lbs-connect-driver:tpslib-compile,lbs-connect-driver:jvm"
     }
   }]
 }

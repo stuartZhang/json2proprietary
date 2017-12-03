@@ -1,0 +1,32 @@
+{
+  "query": {
+    "search-query": {
+      "scheme": "tcs-single-search",
+      "language": "language",
+      "position": {
+        "variant": "point",
+        "point": {
+          "lat": 39.116823,
+          "lon": 117.148402
+        }
+      },
+      "search-filter": {
+        "pair": [{
+          "key": "name",
+          "value": "天拖北道"
+        }, {
+          "key": "search-result-id",
+          "value": ""
+        }],
+        "result-style": {
+          "key": "single-search"
+        }
+      },
+      "iter-command": {
+        "command": "start",
+        "state": "",
+        "number": 10
+      }
+    }
+  }
+}

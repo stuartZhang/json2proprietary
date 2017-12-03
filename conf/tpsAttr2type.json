@@ -34,6 +34,18 @@
           "key": "binary-base64"
         }
       }
+    },
+    "search-query": {
+      "position": {
+        "point": {
+          "lat": "double",
+          "lon": "double"
+        }
+      },
+      "iter-command": {
+        "number": "long",
+        "state": "binary-base64"
+      }
     }
   },
   "geocode-reply": {
@@ -56,6 +68,22 @@
           }
         }
       }
+    }
+  },
+  "search-reply": {
+    "proxmatch": {
+      "distance": "float",
+      "place": {
+        "location": {
+          "point": {
+            "lat": "double",
+            "lon": "double"
+          }
+        }
+      }
+    },
+    "iter-result": {
+      "state": "binary-base64"
     }
   }
 }

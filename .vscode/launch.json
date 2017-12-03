@@ -10,7 +10,7 @@
     "program": "${workspaceRoot}\\tests\\test-1.js",
     "cwd": "${workspaceRoot}",
     "env": {
-      "DEBUG": "config-load,tpslib-compile,jvm"
+      "DEBUG": "lbs-connect-driver:config-load,lbs-connect-driver:tpslib-compile,lbs-connect-driver:jvm"
     }
   }, {
     "type": "node",
@@ -19,7 +19,7 @@
     "program": "${workspaceRoot}\\tests\\test-2.js",
     "cwd": "${workspaceRoot}",
     "env": {
-      "DEBUG": "tps-sender,tps-details,config-load,tpslib-compile,jvm"
+      "DEBUG": "lbs-connect-driver:tps-sender,lbs-connect-driver:tps-details,lbs-connect-driver:config-load,lbs-connect-driver:tpslib-compile,lbs-connect-driver:jvm"
     }
   }]
 }

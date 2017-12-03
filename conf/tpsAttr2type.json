@@ -78,6 +78,12 @@
           "point": {
             "lat": "double",
             "lon": "double"
+          },
+          "box": {
+            "point": {
+              "lat": "double",
+              "lon": "double"
+            }
           }
         }
       }

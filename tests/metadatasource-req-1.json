@@ -1,0 +1,41 @@
+{
+  "query": {
+    "metadata-source-query": {
+      "screen-height": 1080,
+      "screen-resolution": 480,
+      "screen-width": 1794,
+      "ts": 4223999047,
+      "language": "",
+      "wanted-content": [{
+        "country": "USA",
+        "dataset-id": "",
+        "type": "unified binary model"
+      }, {
+        "country": "USA",
+        "dataset-id": "",
+        "type": "raster map"
+      }, {
+        "country": "USA",
+        "dataset-id": "",
+        "type": "weather"
+      }, {
+        "country": "USA",
+        "dataset-id": "",
+        "type": "data availability"
+      }],
+      "want-unified-maps": {
+        "feature-set-version": 1,
+        "want-lod": {},
+        "want-optional-layers": {},
+        "want-label-layers": {},
+        "want-2d-buildings": {},
+        "want-poi-layers": {},
+        "want-new-categories": {},
+        "want-satellite-layers": {},
+        "want-tod": {},
+        "want-themes": {}
+      },
+      "want-loc": {}
+    }
+  }
+}

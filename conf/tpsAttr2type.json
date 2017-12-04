@@ -46,6 +46,15 @@
         "number": "long",
         "state": "binary-base64"
       }
+    },
+    "metadata-source-query": {
+      "screen-height": "uint",
+      "screen-resolution": "uint",
+      "screen-width": "uint",
+      "ts": "uint",
+      "want-unified-maps": {
+        "feature-set-version": "uint"
+      }
     }
   },
   "geocode-reply": {

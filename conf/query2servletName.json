@@ -10,5 +10,6 @@
   "proxpoi-query": "proxpoi,global",
   "send-place-message-query": "send-place-message",
   "send-message-query": "send-message",
-  "search-query": "search"
+  "search-query": "search",
+  "metadata-source-query": "metadata"
 }

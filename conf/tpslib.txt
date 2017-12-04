@@ -27,11 +27,21 @@ templates:
  - want-shared-maps: []
  - want-extended-maps: []
  - want-unified-maps: []
+ - want-unified-maps: [feature-set-version]
+ - want-lod: []
+ - want-optional-layers: []
+ - want-2d-buildings: []
+ - want-label-layers: []
+ - want-poi-layers: []
+ - want-new-categories: []
+ - want-satellite-layers: []
+ - want-tod: []
+ - want-themes: []
+ - want-loc: []
  - metadata-source-reply: []
  - metadata-source-reply: [ts]
  - format: [min-version, max-version, name]
  - characteristics: []
-
 
 # Need to understand what do we need exactly.
  - content-source: [projection, country]

@@ -6,8 +6,8 @@
   "configurations": [{
     "type": "node",
     "request": "launch",
-    "name": "geocode",
-    "program": "${workspaceRoot}\\tests\\test-2.js",
+    "name": "metadatasource",
+    "program": "${workspaceRoot}\\tests\\test-4.js",
     "cwd": "${workspaceRoot}",
     "env": {
       "DEBUG": "lbs-connect-driver:tps-sender,lbs-connect-driver:tps-details,lbs-connect-driver:config-load,lbs-connect-driver:tpslib-compile,lbs-connect-driver:jvm"
@@ -17,6 +17,15 @@
     "request": "launch",
     "name": "ssb",
     "program": "${workspaceRoot}\\tests\\test-3.js",
+    "cwd": "${workspaceRoot}",
+    "env": {
+      "DEBUG": "lbs-connect-driver:tps-sender,lbs-connect-driver:tps-details,lbs-connect-driver:config-load,lbs-connect-driver:tpslib-compile,lbs-connect-driver:jvm"
+    }
+  }, {
+    "type": "node",
+    "request": "launch",
+    "name": "geocode",
+    "program": "${workspaceRoot}\\tests\\test-2.js",
     "cwd": "${workspaceRoot}",
     "env": {
       "DEBUG": "lbs-connect-driver:tps-sender,lbs-connect-driver:tps-details,lbs-connect-driver:config-load,lbs-connect-driver:tpslib-compile,lbs-connect-driver:jvm"

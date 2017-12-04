@@ -100,5 +100,24 @@
     "iter-result": {
       "state": "binary-base64"
     }
+  },
+  "metadata-source-reply": {
+    "ts": "uint",
+    "content-source": {
+      "url-args-template": {
+        "base-draw-order": "uint",
+        "download-priority": "uint",
+        "label-draw-order": "uint",
+        "lam-index": "uint",
+        "max-zoom": "uint",
+        "min-zoom": "uint",
+        "ref-tile-grid-level": "uint",
+        "tile-size": "uint",
+        "format": {
+          "max-version": "uint",
+          "min-version": "uint"
+        }
+      }
+    }
   }
 }

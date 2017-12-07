@@ -1,4 +1,5 @@
-RegExp.quote = require("regexp-quote");
+/* eslint-disable no-console */
+RegExp.quote = require('regexp-quote');
 const _ = require('underscore');
 const java = require('../lib/java');
 const J2Ttransformer = require('../lib/json2tps');
@@ -14,12 +15,12 @@ const sampleReq = require('../tests/geocode-req-2.json');
 (async () => {
   await java.waitUtilJvm;
   const mux = {
-    host: 'aabdea8e46a51e37190abaacd351acdf062ffffc.amadorsoft.com',
+    'host': 'aabdea8e46a51e37190abaacd351acdf062ffffc.amadorsoft.com',
     // host: '192.168.85.10',
-    port: 8129,
-    timeout: 30 * 1000,
-    tpslib: 'tpslib.txt',
-    servletName: undefined
+    'port': 8129,
+    'timeout': 30 * 1000,
+    'tpslib': 'tpslib.txt',
+    'servletName': undefined
   };
   // Build a TPS request
   const j2tIden = new J2Ttransformer(sameleIden); //TODO: from http request

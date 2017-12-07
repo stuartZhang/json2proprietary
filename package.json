@@ -31,5 +31,12 @@
     "traverse": "^0.6.6",
     "underscore": "^1.8.3",
     "when": "^3.7.8"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.3",
+    "eslint": "^4.12.1",
+    "eslint-config-amo": "file:../eslint-config-amo",
+    "eslint-plugin-es6": "file:../eslint-config-amo/eslint-plugin-es6",
+    "eslint-plugin-sweetjs": "file:../eslint-config-amo/eslint-plugin-sweetjs"
   }
 }

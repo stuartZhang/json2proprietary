@@ -3,7 +3,7 @@
 module.exports = {
   'parserOptions': {
     'ecmaVersion': 5,
-    'sourceType': 'script',
+    'sourceType': 'module',
     'ecmaFeatures': {
       'globalReturn': true,
       'impliedStrict': false,

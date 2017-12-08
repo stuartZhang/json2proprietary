@@ -17,18 +17,17 @@ module.exports = {
   },
   'extends': [
     'eslint:recommended',
-    'eslint-config-amo/presets/eslint-config-bestpractice.js',
-    'eslint-config-amo/presets/eslint-config-errors.js',
-    'eslint-config-amo/presets/eslint-config-es6.js',
-    'eslint-config-amo/presets/eslint-config-node.js',
-    'eslint-config-amo/presets/eslint-config-possibleerrors.js',
-    'eslint-config-amo/presets/eslint-config-stylistic.js',
-    'eslint-config-amo/presets/eslint-config-var.js'
+    'amo/eslint-config-bestpractice.js',
+    'amo/eslint-config-errors.js',
+    'amo/eslint-config-es6.js',
+    'amo/eslint-config-node.js',
+    'amo/eslint-config-possibleerrors.js',
+    'amo/eslint-config-stylistic.js',
+    'amo/eslint-config-var.js'
   ],
   'parser': 'babel-eslint',
-  'plugins': ['sweetjs'],
   'rules': {
-    'sweetjs/no-console': ['error'],
+    'amo/no-console': ['error'],
     'no-console': 'off'
   },
   'root': true

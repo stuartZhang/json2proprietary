@@ -36,7 +36,6 @@
     "babel-eslint": "^8.0.3",
     "eslint": "^4.12.1",
     "eslint-config-amo": "file:../eslint-config-amo",
-    "eslint-plugin-es6": "file:../eslint-config-amo/eslint-plugin-es6",
-    "eslint-plugin-sweetjs": "file:../eslint-config-amo/eslint-plugin-sweetjs"
+    "eslint-plugin-amo": "file:../eslint-plugin-amo"
   }
 }
